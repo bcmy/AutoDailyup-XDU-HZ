@@ -5,8 +5,8 @@ from functions import updateTimeLib, checkTime, checkInternetConnection, getInfo
 import requests
 
 
-QmsgKEY = "xxxxxxxxxxxxxxxxx" #QmsgKEY自行在Qmsg管理后台获取
-QQGroupNum ="xxxxxx" #在推送的qq群号
+QmsgKEY = "xxxxxxxxxx" #QmsgKEY自行在Qmsg管理后台获取
+QQGroupNum ="xxxxxxxxxx" #在推送的qq群号
 
 def index(event, context):
     """
@@ -84,7 +84,8 @@ if __name__ == '__main__':
             # 每天23点55分，更新下一天上报的随机时刻
             time_lib = updateTimeLib(time_lib)
             print("明天晨检时间随机为 %02d:%02d" % (time_lib[0], time_lib[1]))
-            requests.post("https://qmsg.zendee.cn/send/{}".format(QmsgKEY), data = {'msg': '[明天晨检预报]\n时间: {}:{}\n'.format(time_lib[0],time_lib[1])})
+            # requests.post("https://qmsg.zendee.cn/send/{}".format(QmsgKEY), data = {'msg': '[明天晨检预报]\n时间: {}:{}\n'.format(time_lib[0],time_lib[1])})
+            requests.post("https://qmsg.zendee.cn/group/{}".format(QmsgKEY), data = {'msg': '[明天晨检预报]\n时间：{}:{}\n@at={}@'.format(time_lib[0],time_lib[1],QQNum),'qq':'{}'.format(QQGroupNum)})
             if night_mood:
                 # 进入夜间睡眠模式
                 print("程序将进入睡眠模式，祝您晚安！")
