@@ -31,11 +31,11 @@ python3 index.py
 ##### 特别提醒 3：脚本记录的cookie数据每隔一段时间会失效，若是无法上报可通过删除`data`文件夹下的`cookie.inf`后重新登录来刷新。
 
 ### 运行截图：
-![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/images/1.png)
+![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/blob/master/images/1.png)
 
-![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/images/2.jpg)
+![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/blob/master/images/2.jpg)
 #### 终端每天正常的输出结果：
-![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/images/3.png)
+![image](https://github.com/bcmy/AutoDailyup-XDU-HZ/blob/master/images/3.png)
 * ### 关于Linux和Mac用户如何实现眼不见心不烦：
 如果觉得终端一直挂在那里很烦的话，建议安装一个后台分屏软件`screen`:
 ```
