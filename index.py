@@ -5,8 +5,8 @@ from functions import updateTimeLib, checkTime, checkInternetConnection, getInfo
 import requests
 
 
-QmsgKEY = "xxxxxxxxxx" #QmsgKEY自行在Qmsg管理后台获取
-QQGroupNum ="xxxxxxxxxx" #在推送的qq群号
+QmsgKEY = "xxxxxx" #QmsgKEY自行在Qmsg管理后台获取
+QQGroupNum ="xxxxxx" #在推送的qq群号
 
 def index(event, context):
     """
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     # 第一次上报不判断函数返回值，因为假设用户还在电脑旁，可以实时观察程序输出结果
     success = UPLOAD.upload_ncov_message(cookie, config)
     currentState = 1
-    QmsgPush(currentState,success)
+    QmsgPush(currentState,success,QmsgKEY,QQNum,QQGroupNum)
     # 定义程序上报的时间，初始值为 8:15, 12:05, 18:10
     time_lib = [8, 15, 12, 5, 18, 10]
     # 立即更新今日上报时间
@@ -64,19 +64,19 @@ if __name__ == '__main__':
                 cookie = LOGIN.login()
             # 函数返回值为1表示上报失败，将自动重试3次
             success = UPLOAD.upload_ncov_message(cookie, config)
-            QmsgPush(currentState,success)
+            QmsgPush(currentState,success,QmsgKEY,QQNum,QQGroupNum)
             print("填报成功,success为%d" % success)
             if success:
                 time.sleep(90)
                 success = UPLOAD.upload_ncov_message(cookie, config)
                 if success:
                     print("连续尝试了2次都上报失败了，看来你已经自己填过了。")
-                    QmsgPush(currentState,success)
+                    QmsgPush(currentState,success,QmsgKEY,QQNum,QQGroupNum)
                     time.sleep(180)
                     success = UPLOAD.upload_ncov_message(cookie, config)
                     if success:
                         print("连续尝试了3次都上报失败了，看来你已经自己填过了。")
-                        QmsgPush(currentState,success)
+                        QmsgPush(currentState,success,QmsgKEY,QQNum,QQGroupNum)
             # 上报结束之后的冷却时间
             time.sleep(cd_time)
             

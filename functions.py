@@ -8,22 +8,23 @@ import urllib.request
 
 
 #Qmsg推送函数
-def QmsgPush(currentState,success):
-    if currentState == 1:
-        msgState = "晨检"
-    elif currentState == 2:
-        msgState = "午检"
-    elif currentState == 3:
-        msgState = "晚检"
-    else:
-        msgState = "其他"
-    if success == 0:
-        msgSuccess = "填报成功"
-    elif success == 1:
-        msgSuccess = "已填报过"
-    else:
-        msgSuccess = "填报失败"
+def QmsgPush(currentState,success,QmsgKEY,QQNum,QQGroupNum):
+
     try:
+        if currentState == 1:
+            msgState = "晨检"
+        elif currentState == 2:
+            msgState = "午检"
+        elif currentState == 3:
+            msgState = "晚检"
+        else:
+            msgState = "其他"
+        if success == 0:
+            msgSuccess = "填报成功"
+        elif success == 1:
+            msgSuccess = "已填报过"
+        else:
+            msgSuccess = "填报失败"
         # requests.post("https://qmsg.zendee.cn/send/{}".format(QmsgKEY), data = {'msg': '[自动填报]\n时间: {}\n类别: {}\n状态: {}'.format(datetime.datetime.now(),msgState,msgSuccess)})
         requests.post("https://qmsg.zendee.cn/group/{}".format(QmsgKEY), data = {'msg': '[自动晨检填报]\n时间：{}\n类别：{}\n状态：{}\n@at={}@'.format(datetime.datetime.now(), msgState, msgSuccess, QQNum),'qq':'{}'.format(QQGroupNum)})
     except:
